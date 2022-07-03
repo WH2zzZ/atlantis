@@ -4,9 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <groupId>com.oowanghan.atlantis</groupId>
-        <artifactId>atlantis-dependencies</artifactId>
+        <artifactId>atlantis</artifactId>
         <version>1.0.0-SNAPSHOT</version>
-        <relativePath>../atlantis-dependencies/pom.xml</relativePath>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -20,24 +20,28 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <spring.context.support.version>1.0.11</spring.context.support.version>
-    </properties>
 
-    <dependencies>
-        <!--   全局 utils     -->
-        <dependency>
-            <groupId>com.oowanghan.atlantis</groupId>
-            <artifactId>atlantis-utils</artifactId>
-        </dependency>
-    </dependencies>
+        <atlantis-dependencies.version>1.0.0-SNAPSHOT</atlantis-dependencies.version>
+        <spring-cloud-alibaba-dependencies.version>1.0.0-SNAPSHOT</spring-cloud-alibaba-dependencies.version>
+    </properties>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
-                <artifactId>spring-cloud-alibaba-starters</artifactId>
-                <version>${revision}</version>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba-dependencies.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.oowanghan.atlantis</groupId>
+                <artifactId>atlantis-dependencies</artifactId>
+                <version>${atlantis-dependencies.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
-
 </project>
