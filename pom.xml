@@ -7,7 +7,7 @@
     <groupId>com.oowanghan.atlantis</groupId>
     <artifactId>atlantis</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>${revision}</version>
     <modules>
         <module>atlantis-framework</module>
         <module>atlantis-utils</module>
@@ -15,12 +15,12 @@
     </modules>
 
     <properties>
-        <atlantis.vision>1.0.0-SNAPSHOT</atlantis.vision>
-
+        <revision>0.0.1-SNAPSHOT</revision>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
 
         <junit.version>4.13.2</junit.version>
+        <maven-flatten.version>1.1.0</maven-flatten.version>
     </properties>
 
     <dependencies>
@@ -34,4 +34,36 @@
 
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>flatten-maven-plugin</artifactId>
+                <version>${maven-flatten.version}</version>
+                <configuration>
+                    <updatePomFile>true</updatePomFile>
+                    <flattenMode>resolveCiFriendliesOnly</flattenMode>
+                    <pomElements>
+                        <dependencies>expand</dependencies>
+                    </pomElements>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>flatten</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>flatten</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>flatten.clean</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
