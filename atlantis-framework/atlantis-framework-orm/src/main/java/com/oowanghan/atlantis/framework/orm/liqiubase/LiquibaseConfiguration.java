@@ -3,40 +3,38 @@ package com.oowanghan.atlantis.framework.orm.liqiubase;
 import liquibase.integration.spring.SpringLiquibase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.AutoConfigureAfter;
+import org.springframework.boot.autoconfigure.AutoConfigureBefore;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration;
 import org.springframework.boot.autoconfigure.liquibase.LiquibaseProperties;
+import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
-import org.springframework.core.task.TaskExecutor;
 
 import javax.sql.DataSource;
 
-@Configuration
+@Configuration(proxyBeanMethods = false)
+@ConditionalOnProperty(prefix = "spring.liquibase", name = "enabled", matchIfMissing = true)
+@EnableConfigurationProperties(LiquibaseProperties.class)
 public class LiquibaseConfiguration {
 
     private final Logger log = LoggerFactory.getLogger(LiquibaseConfiguration.class);
 
     private final Environment env;
+    private final LiquibaseProperties properties;
 
-
-    public LiquibaseConfiguration(Environment env) {
+    public LiquibaseConfiguration(Environment env, LiquibaseProperties properties) {
         this.env = env;
+        this.properties = properties;
     }
 
     @Bean
-    public SpringLiquibase liquibase(@Qualifier("taskExecutor") TaskExecutor taskExecutor,
-                                     DataSource dataSource, LiquibaseProperties liquibaseProperties) {
-
-        SpringLiquibase liquibase = new SpringLiquibase();
-        liquibase.setDataSource(dataSource);
-        liquibase.setChangeLog("classpath:liquibase/master.xml");
-        liquibase.setContexts(liquibaseProperties.getContexts());
-        liquibase.setDefaultSchema(liquibaseProperties.getDefaultSchema());
-        liquibase.setDropFirst(liquibaseProperties.isDropFirst());
-        liquibase.setChangeLogParameters(liquibaseProperties.getParameters());
-        liquibase.setShouldRun(liquibaseProperties.isEnabled());
-        log.debug("Configuring Liquibase");
-        return liquibase;
+    public SpringLiquibase liquibase(DataSource dataSource) {
+        log.info("Start Configuring Liquibase");
+        return SpringLiquibaseFactory.createSpringLiquibase(dataSource, properties, null, null);
     }
 }

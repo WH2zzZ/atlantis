@@ -24,6 +24,8 @@
         <spring-cloud-alibaba.version>2021.0.1.0</spring-cloud-alibaba.version>
         <liquibase-slf4j.version>4.1.0</liquibase-slf4j.version>
         <mybatis-plus-boot-starter.version>3.5.2</mybatis-plus-boot-starter.version>
+        <mysql-connector-java.version>8.0.28</mysql-connector-java.version>
+        <liquibase-core.version>4.11.0</liquibase-core.version>
     </properties>
 
     <dependencyManagement>
@@ -80,21 +82,31 @@
             </dependency>
             <!-- end:lombok -->
 
-            <!-- start:liqiubase -->
+            <!-- start:orm -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-connector-java.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>com.mattbertolini</groupId>
                 <artifactId>liquibase-slf4j</artifactId>
                 <version>${liquibase-slf4j.version}</version>
             </dependency>
-            <!-- end:liqiubase -->
+            <dependency>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-core</artifactId>
+                <version>${liquibase-core.version}</version>
+            </dependency>
 
-            <!-- start:mybatis-plus -->
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus-boot-starter.version}</version>
             </dependency>
-            <!-- end:mybatis-plus -->
+            <!-- end:orm -->
+
         </dependencies>
     </dependencyManagement>
 
