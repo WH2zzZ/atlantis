@@ -14,8 +14,11 @@
     <version>${revision}</version>
     <packaging>pom</packaging>
     <modules>
-        <module>atlantis-framework-core</module>
-        <module>atlantis-framework-orm</module>
+        <module>atlantis-framework-web</module>
+        <module>atlantis-framework-mysql</module>
+        <module>atlantis-framework-redis</module>
+        <module>atlantis-framework-auth</module>
+        <module>atlantis-framework-common</module>
     </modules>
 
     <properties>
@@ -28,22 +31,14 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <optional>true</optional>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-api</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-slf4j-impl</artifactId>
-            <optional>true</optional>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
         </dependency>
 
         <dependency>
@@ -54,6 +49,16 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-autoconfigure</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-commons</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.oowanghan.atlantis</groupId>
+            <artifactId>atlantis-utils</artifactId>
+        </dependency>
+
     </dependencies>
 
     <dependencyManagement>

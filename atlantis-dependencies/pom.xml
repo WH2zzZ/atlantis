@@ -26,6 +26,10 @@
         <mybatis-plus-boot-starter.version>3.5.2</mybatis-plus-boot-starter.version>
         <mysql-connector-java.version>8.0.28</mysql-connector-java.version>
         <liquibase-core.version>4.11.0</liquibase-core.version>
+        <jjwt.version>0.11.2</jjwt.version>
+        <redisson-spring-boot-starter.version>3.17.4</redisson-spring-boot-starter.version>
+        <hutool-all.version>5.8.4</hutool-all.version>
+        <mapstruct.version>1.2.0.Final</mapstruct.version>
     </properties>
 
     <dependencyManagement>
@@ -38,12 +42,27 @@
             </dependency>
             <dependency>
                 <groupId>com.oowanghan.atlantis</groupId>
-                <artifactId>atlantis-framework-orm</artifactId>
+                <artifactId>atlantis-framework-auth</artifactId>
                 <version>${revision}</version>
             </dependency>
             <dependency>
                 <groupId>com.oowanghan.atlantis</groupId>
-                <artifactId>atlantis-framework-core</artifactId>
+                <artifactId>atlantis-framework-mysql</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.oowanghan.atlantis</groupId>
+                <artifactId>atlantis-framework-web</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.oowanghan.atlantis</groupId>
+                <artifactId>atlantis-framework-redis</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.oowanghan.atlantis</groupId>
+                <artifactId>atlantis-framework-common</artifactId>
                 <version>${revision}</version>
             </dependency>
             <!-- end: atlantis dependencies -->
@@ -82,7 +101,7 @@
             </dependency>
             <!-- end:lombok -->
 
-            <!-- start:orm -->
+            <!-- start:mysql -->
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
@@ -105,7 +124,50 @@
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus-boot-starter.version}</version>
             </dependency>
-            <!-- end:orm -->
+            <!-- end:mysql -->
+
+            <!-- start:jjwt -->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-api</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-impl</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+            <!-- end:jjwt -->
+
+            <!-- start:redis -->
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-boot-starter</artifactId>
+                <version>${redisson-spring-boot-starter.version}</version>
+            </dependency>
+            <!-- end:redis -->
+
+            <!-- start:hutool -->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool-all.version}</version>
+            </dependency>
+            <!-- end:hutool -->
+
+            <!-- start:mapstruct -->
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-jdk8</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-processor</artifactId>
+                <version>${mapstruct.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <!-- end:mapstruct -->
 
         </dependencies>
     </dependencyManagement>
