@@ -1,4 +1,4 @@
-package com.oowanghan.atlantis.framework.web.vo;
+package com.oowanghan.atlantis.framework.web.exception;
 
 import com.oowanghan.atlantis.framework.common.exception.BizException;
 import com.oowanghan.atlantis.framework.web.vo.BizResponse;

@@ -1,2 +1,3 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.oowanghan.atlantis.framework.redis.RedissonAutoConfiguration
+  com.oowanghan.atlantis.framework.redis.SnowflakeAutoConfiguration,\
+  com.oowanghan.atlantis.framework.redis.DistributeLockAutoConfiguration

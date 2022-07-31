@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.oowanghan.atlantis.framework.auth.config.JwtAuthAutoConfiguration,\
+  com.oowanghan.atlantis.framework.auth.config.CustomizedMvcConfiguration

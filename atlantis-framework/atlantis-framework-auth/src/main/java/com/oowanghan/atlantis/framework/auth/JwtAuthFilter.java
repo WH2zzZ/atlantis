@@ -3,7 +3,6 @@ package com.oowanghan.atlantis.framework.auth;
 import cn.hutool.core.util.StrUtil;
 import com.oowanghan.atlantis.framework.auth.context.AuthContextHolder;
 import com.oowanghan.atlantis.framework.auth.entity.AtlantisJwtClaim;
-import io.jsonwebtoken.Claims;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.GenericFilterBean;
 
@@ -39,12 +38,9 @@ public class JwtAuthFilter extends GenericFilterBean {
 
         String jwt = resolveToken(request);
 
-        if (StrUtil.isEmpty(jwt)) {
+        if (StrUtil.isNotEmpty(jwt)) {
             AtlantisJwtClaim claims;
             claims = jwtTokenProcesser.validateToken(jwt);
-            if (claims != null) {
-                jwtTokenProcesser.setAuthentication(jwt, claims);
-            }
             AuthContextHolder.getContext().setClaims(claims);
         } else {
             AuthContextHolder.getContext().setClaims(null);

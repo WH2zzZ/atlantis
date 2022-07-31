@@ -18,7 +18,6 @@ import java.util.Optional;
 /**
  * 拦截器 对User信息进行解析，并设置到上下文中
  */
-@Component
 public class JwtAuthInterceptor implements AsyncHandlerInterceptor {
 
     @Override
