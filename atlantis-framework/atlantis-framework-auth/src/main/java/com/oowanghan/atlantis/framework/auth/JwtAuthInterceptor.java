@@ -23,9 +23,10 @@ public class JwtAuthInterceptor implements AsyncHandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
-        if (!(handler instanceof HandlerMethod handlerMethod)) {
+        if (!(handler instanceof HandlerMethod)) {
             return true;
         }
+        HandlerMethod handlerMethod = (HandlerMethod) handler;
 
         Method method = handlerMethod.getMethod();
         if (method.getAnnotation(AuthControl.class) == null) {
