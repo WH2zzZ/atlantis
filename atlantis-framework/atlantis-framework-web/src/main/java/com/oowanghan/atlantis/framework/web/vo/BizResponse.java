@@ -3,12 +3,14 @@ package com.oowanghan.atlantis.framework.web.vo;
 
 import com.oowanghan.atlantis.framework.common.exception.BizException;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 public class BizResponse<T> implements Serializable {
 
     protected static final int SUCCESS_STATUS = 200;
     protected static final String SUCCESS_MESSAGE = "success";
+    @Serial
     private static final long serialVersionUID = 6109259661960244534L;
 
     private T data;
